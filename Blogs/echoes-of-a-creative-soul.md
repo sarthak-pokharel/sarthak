@@ -24,5 +24,5 @@ lies here a sanctuary of my thoughts.\
 a playground for my creativity.\
 unfiltered.\
 raw and real.\
-why not indeed.\
-as this soul that yearns to express.
+for that this soul yearns to express.\
+why not, indeed.
