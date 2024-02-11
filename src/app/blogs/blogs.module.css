@@ -1,0 +1,31 @@
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .blog {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  .blog h2 {
+    margin-top: 0;
+  }
+  .blog p {
+    margin-top: 5px;
+    color: #666;
+  }
+  .read-more {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .read-more:hover {
+    background-color: #0056b3;
+  }
