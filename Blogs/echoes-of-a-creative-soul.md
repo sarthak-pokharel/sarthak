@@ -27,7 +27,7 @@ raw and real.
 
 why not, indeed.
 
-for that this soul yearns to express.\
+for that this soul yearns to express.
 
 
 
