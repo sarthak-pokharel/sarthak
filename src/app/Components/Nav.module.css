@@ -10,4 +10,5 @@
     gap: 20px;
     margin-right: 3%;
     margin-top: 1%;
+    flex-wrap: wrap;
 }

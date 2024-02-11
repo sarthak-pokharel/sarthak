@@ -11,7 +11,7 @@ export default function Blogs() {
                 <div className="blog">
                     <h2 style={{textTransform:'lowercase'}}>{blog.title}</h2>
                     <p>{blog.short_description}</p>
-                    <a href={blog.link} className="read-more">read</a>
+                    <a href={blog.link} target="_blank" className="read-more">read</a>
                 </div>
             </>)}
         </div>

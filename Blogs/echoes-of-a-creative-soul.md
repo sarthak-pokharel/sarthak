@@ -1,10 +1,7 @@
 ### echoes of a creative Soul
 
-sarthak.
-
 a student,\
 an explorer.
-
 passionate by every breath,\
 about the rhythm of codes,\
 the elegance of mathematics,\
