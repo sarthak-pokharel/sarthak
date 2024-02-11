@@ -1,8 +1,8 @@
 {
     "blogs":[
         {
-            "title": "The Intellectual Ventures of Sarthak Pokharel",
-            "short_description": "Greetings, onlookers and purported scholars. I am Sarthak, a mere student in the grand tapestry of Computer Engineering at Pulchowk Campus, nestled within the confines of Nepal. This platform, this blog, is not...",
+            "title": "echoes of a creative soul",
+            "short_description": "here, where my thoughts dance freely, raw and real",
             "published_date": "21 Feb 2023",
             "link": "https://sarthak-pokharel.github.io/sarthak/Blogs/echoes-of-a-creative-soul",
             "labels": ["personal", "journey"]

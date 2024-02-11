@@ -9,9 +9,9 @@ export default function Blogs() {
             {inf.blogs.map(blog => <>
 
                 <div className="blog">
-                    <h2>{blog.title}</h2>
+                    <h2 style={{textTransform:'lowercase'}}>{blog.title}</h2>
                     <p>{blog.short_description}</p>
-                    <a href={blog.link} className="read-more">Read More</a>
+                    <a href={blog.link} className="read-more">read</a>
                 </div>
             </>)}
         </div>

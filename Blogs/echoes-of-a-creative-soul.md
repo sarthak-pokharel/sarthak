@@ -1,4 +1,4 @@
-### Echoes of a Creative Soul
+### echoes of a creative Soul
 
 sarthak.
 
