@@ -1,4 +1,4 @@
-### echoes of a creative Soul
+### echoes of a creative soul
 
 a student,\
 an explorer.
