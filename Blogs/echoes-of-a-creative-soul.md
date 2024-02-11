@@ -1,7 +1,9 @@
 ### echoes of a creative soul
 
-a student,\
-an explorer.
+a wondering student,\
+an explorer,\
+seeker of the truth.
+
 passionate by every breath,\
 about the rhythm of codes,\
 the elegance of mathematics,\
