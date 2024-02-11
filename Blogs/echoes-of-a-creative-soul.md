@@ -12,7 +12,7 @@ the depth of philoshopy,\
 the harmony of music,\
 the serenity of nature.
 
-weaving tales,\
+here, weaving tales,\
 not of others but mine.\
 experiences gathered,\
 knowledge sought,\
