@@ -23,7 +23,12 @@ beyond the professional facade,\
 lies here a sanctuary of my thoughts.\
 a playground for my creativity.\
 unfiltered.\
-raw and real.\
+raw and real.
+
 why not, indeed.
 
 for that this soul yearns to express.\
+
+
+
+...
