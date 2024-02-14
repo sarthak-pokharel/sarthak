@@ -2,9 +2,11 @@
     {
         "date": 1707913855285,
         "content": {
-            "text": "TrashDump Initialized ![](trashcan.jpg)"
+            "title": "TrashDump Initialized",
+            "text": "![](trashcan.jpg)"
         },
-        "labels": ["random-bs"]
+        "labels": ["random-bs"],
+
     }
     
 ]
