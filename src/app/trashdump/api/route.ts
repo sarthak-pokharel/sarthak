@@ -4,7 +4,7 @@ import 'dotenv/config';
 import { NextResponse } from "next/server";
 
 let serviceAccount = JSON.parse(atob(process.env.service_acc_key));
-if(!admin.app.length){
+if(!admin.apps.length){
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
