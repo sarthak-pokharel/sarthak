@@ -96,8 +96,8 @@ function TextOnly({ trash }) {
 
 
 export default async function trashdump() {
-    // let ttr = await fetchTrashDumps();
-    let ttr = trashtree;
+    let ttr = await fetchTrashDumps();
+    // let ttr = trashtree;
     return <>
 
         <Nav />
