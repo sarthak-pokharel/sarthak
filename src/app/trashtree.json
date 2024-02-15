@@ -1,0 +1,21 @@
+[
+    {
+        "date": 1707913855285,
+        "content": {
+            "title": "TrashDump Initialized",
+            "text": "TrashDump Section Ready to be flooded",
+            "imgs":["/trash/trashcan.jpg"]
+        },
+        "labels": ["random-bs"]
+    },
+    {
+        "date": 1708001506370,
+        "content": {
+            "title": "",
+            "text": "Imagine Not Gulping 2 Cold tablets at once with not warm water but with super chilled coke \n\ncouldnt be me fr!!!",
+            "imgs":[]
+        },
+        "labels": ["random-bs", "couldnt-be-me"]
+
+    }
+]
