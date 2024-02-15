@@ -15,8 +15,12 @@ trashtree.reverse();
 
 async function fetchTrashDumps(){
     let j = await (await fetch(process.env.URL+'/api/gettrashdumps')).text();
-    console.log("thisiswhatigot",[j])
-    j = JSON.parse(j);
+    // console.log("thisiswhatigot",[j])
+    try{
+        j = JSON.parse(j);
+    }catch{
+        j = [];
+    }
     // console.log(j);
     // let j = []
     j.sort(function(a,b){
