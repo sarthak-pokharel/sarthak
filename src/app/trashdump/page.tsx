@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import Nav from "../Components/Nav";
-import trashtree from '../trashtree.json';
+import trashtree from '../../../[TrashDump]/trashtree.json';
 import { wrap } from "module";
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -28,7 +28,7 @@ function ClassicTCard({ trash }) {
             <div>
                 {trash.content.imgs[0] ?
 
-                    <CardMedia image={"https://sarthak-pokharel.github.io/sarthak/[TrashDump]/trashcan.jpg"} sx={{ height: 120 }} title={trash.content.title} /> :
+                    <CardMedia component="img" image={"https://sarthak-pokharel.github.io/sarthak/[TrashDump]/trashcan.jpg"} sx={{ height: 120 }} title={trash.content.title} /> :
 
                     ""}
                 <CardContent>

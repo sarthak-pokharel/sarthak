@@ -1,6 +1,6 @@
 import Nav from "../Components/Nav";
 import styles from './blogs.module.css'
-import inf from '../content.json'
+import inf from '../../../[Blogs]/content.json'
 export default function Blogs() {
     return <>
         <Nav />
