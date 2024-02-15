@@ -11,13 +11,13 @@ const timeAgoParser = new timeAgo('en-US');
 
 trashtree.reverse();
 
-interface TrashContent{
-    title: String, 
+interface TrashContent {
+    title: String,
     imgs: String[],
     text: String
 }
-interface TrashType{
-    date:number,
+interface TrashType {
+    date: number,
     content: TrashContent,
 }
 
@@ -36,11 +36,18 @@ function ClassicTCard({ trash }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
             <div>
-                {trash.content.imgs[0] ?
+                <div style={{textAlign:'center'}}>
+                    {trash.content.imgs[0] ?
 
-                    <CardMedia component="img" image={"https://sarthak-pokharel.github.io/sarthak/[TrashDump]/trashcan.jpg"} sx={{ height: 120 }} title={trash.content.title} /> :
+                        <CardMedia
+                            component="img"
+                            image={"https://sarthak-pokharel.github.io/sarthak/[TrashDump]/trashcan.jpg"}
+                            sx={{ maxHeight: 200, maxWidth: 200 }}
+                            title={trash.content.title}
+                        /> :
 
-                    ""}
+                        ""}
+                </div>
                 <CardContent>
                     {trash.content.text ? <Typography sx={{ "whiteSpace": "pre-warp" }}>
                         {trash.content.text}
@@ -50,7 +57,7 @@ function ClassicTCard({ trash }) {
                 </CardContent>
             </div>
             <div>
-            <CardBottom trash={trash} />
+                <CardBottom trash={trash} />
             </div>
         </div>
 
@@ -58,17 +65,17 @@ function ClassicTCard({ trash }) {
 
     </>);
 }
-function CardBottom({trash}){
-    return <CardContent sx={{ paddingTop: 0,paddingBottom:"0 !important" }}>
-    <Typography variant="body" color="text.secondary" sx={{fontWeight:'bold'}} component="div">
-        {trash.content.title||"random bs"}
-    </Typography>
-    <TimeAgoComp trash={trash}/>
-</CardContent>;
+function CardBottom({ trash }) {
+    return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important" }}>
+        <Typography variant="body" color="text.secondary" sx={{ fontWeight: 'bold' }} component="div">
+            {trash.content.title || "random bs"}
+        </Typography>
+        <TimeAgoComp trash={trash} />
+    </CardContent>;
 }
-function TimeAgoComp({trash}){
-    return (<Typography variant="caption" color="text.secondary" sx={{ textAlign:'right', padding:0}} component="div"
-            >{timeAgoParser.format(trash.date)}</Typography>)
+function TimeAgoComp({ trash }) {
+    return (<Typography variant="caption" color="text.secondary" sx={{ textAlign: 'right', padding: 0 }} component="div"
+    >{timeAgoParser.format(trash.date)}</Typography>)
 }
 
 
@@ -108,7 +115,7 @@ export default function trashdump() {
                 <Card
                     padding={2}
                     elevation={0}
-                    sx={{ width: 300, textTransform:'lowercase' }} key={i}
+                    sx={{ width: 300, textTransform: 'lowercase' }} key={i}
                 >
 
                     <TCard trash={trash} />

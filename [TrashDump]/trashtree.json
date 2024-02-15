@@ -16,6 +16,14 @@
             "imgs":[]
         },
         "labels": ["random-bs", "couldnt-be-me"]
-
+    },
+    {
+        "date": 1708001506370,
+        "content": {
+            "title": "",
+            "text": "Pain is inevitable,\nbut suffering is optional.\n-green arrow",
+            "imgs":[]
+        },
+        "labels": ["random-bs", "couldnt-be-me"]
     }
 ]
