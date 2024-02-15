@@ -8,10 +8,11 @@ let serviceAccount = JSON.parse(atob(process.env.service_acc_key));
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
-const db = admin.firestore(); 
+ 
 
 async function getAllDumpCollection(){
+  
+  const db = admin.firestore();
   const trashDumpCollection = db.collection('trashdump');
   const snapshot = await trashDumpCollection.get();
   let dat = [];
