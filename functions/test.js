@@ -1,5 +1,7 @@
 
-import admin from 'firebase-admin';
+// import admin from 'firebase-admin';
+
+let admin = require('firebase-admin');
 
 let serviceAccount = JSON.parse(atob(process.env.service_acc_key));
 
