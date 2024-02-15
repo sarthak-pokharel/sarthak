@@ -13,9 +13,10 @@ if(!admin.app.length){
 
 
 
-let db = admin.firestore();
 
 async function getAllDumpCollection() {
+    
+    let db = admin.firestore();
     const trashDumpCollection = db.collection('trashdump');
     const snapshot = await trashDumpCollection.get();
     let dat = [];
