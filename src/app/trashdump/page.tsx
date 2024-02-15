@@ -1,14 +1,15 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
-import { wrap } from "module";
+
+
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 timeAgo.addDefaultLocale(en)
-// import Markdown from "react-markdown";
-trashtree.reverse();
-
 const timeAgoParser = new timeAgo('en-US');
+
+
+trashtree.reverse();
 
 
 

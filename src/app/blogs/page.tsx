@@ -1,6 +1,16 @@
 import Nav from "../Components/Nav";
 import styles from './blogs.module.css'
-import inf from '../../../[Blogs]/content.json'
+import inf from '../../../[Blogs]/content.json';
+
+
+
+import timeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+import { Typography } from "@mui/material";
+timeAgo.addDefaultLocale(en)
+const timeAgoParser = new timeAgo('en-US');
+
+
 export default function Blogs() {
     return <>
         <Nav />
@@ -9,9 +19,13 @@ export default function Blogs() {
             {inf.blogs.map(blog => <>
 
                 <div className="blog">
-                    <h2 style={{textTransform:'lowercase'}}>{blog.title}</h2>
-                    <p>{blog.short_description}</p>
-                    <a href={blog.link} target="_blank" className="read-more">read</a>
+                    <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'right' }} >{timeAgoParser.format(blog.published_date)}</Typography>
+                    <Typography sx={{ textTransform: 'lowercase' }} variant="h5">{blog.title}</Typography>
+                    <Typography>{blog.short_description}</Typography>
+                    <br />
+                    <div>
+                        <a href={blog.link} target="_blank" className="read-more">read</a>
+                    </div>
                 </div>
             </>)}
         </div>
