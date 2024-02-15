@@ -1,3 +1,8 @@
 [[redirects]]
 from = "/trash/*"
 to = "https://sarthak-pokharel.github.io/sarthak/[TrashDump]/:splat"
+
+
+[[redirects]]
+from = "/blogslist/*"
+to = "https://sarthak-pokharel.github.io/sarthak/[Blogs]/:splat"
