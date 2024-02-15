@@ -14,7 +14,7 @@ timeAgo.addDefaultLocale(en)
 trashtree.reverse();
 
 async function fetchTrashDumps(){
-    let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ cache: 'no-store' })).text();
+    let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ next: { revalidate: 3600 } })).text();
     // console.log("thisiswhatigot",[j])
     try{
         j = JSON.parse(j);

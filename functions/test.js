@@ -24,6 +24,7 @@ async function getAllDumpCollection(){
 
 
 async function pushTrashDumpItem(item) {
+  const db = admin.firestore();
   const docRef = await db.collection('trashdump').add(item);
   console.log(docRef.id);
   
