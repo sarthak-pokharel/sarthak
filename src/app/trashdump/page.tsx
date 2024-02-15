@@ -2,6 +2,8 @@ import { Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from "
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
 import { AppProps } from 'next/app';
+import { marked } from "marked";
+import './page.css'
 
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -77,6 +79,8 @@ function CardBottom({ trash }) {
 }
 
 function TextOnly({ trash }) {
+    let proc_cont = trash.content.text;
+    proc_cont = marked(trash.content.text);
     return <>
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
 
@@ -84,7 +88,9 @@ function TextOnly({ trash }) {
                 <Typography
 
                     sx={{ "whiteSpace": "pre-wrap" }}
-                >{trash.content.text}</Typography>
+                >
+                    <div dangerouslySetInnerHTML={{__html: proc_cont}}></div>
+                </Typography>
             </CardContent>
             <CardBottom trash={trash} />
         </div>
