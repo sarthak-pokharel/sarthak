@@ -1,17 +1,25 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from "@mui/material";
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
 import { AppProps } from 'next/app';
 
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import { TimeAgoComp } from "./TimeAgoDisp";
+import { FishNChips, TimeAgoComp } from "./Dynamics";
 timeAgo.addDefaultLocale(en)
 
 
 
 trashtree.reverse();
 
+async function fetchTrashDumps(){
+    // console.log(process.env.URL+"/.netlify/functions/gettrashdumps")
+    let j = await (await fetch(process.env.URL+"/.netlify/functions/gettrashdumps")).json();
+    return j.sort(function(a,b){
+        return b.date-a.date;
+    });
+}
+;
 
 function TCard({ trash }) {
     if (trash.content.imgs.length == 1) {
@@ -27,7 +35,7 @@ function ClassicTCard({ trash }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
             <div>
-                <div style={{textAlign:'center'}}>
+                <div style={{textAlign:'center', display:'flex', justifyContent:'center'}}>
                     {trash.content.imgs[0] ?
 
                         <CardMedia
@@ -58,8 +66,9 @@ function ClassicTCard({ trash }) {
 }
 function CardBottom({ trash }) {
     return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important" }}>
+        <FishNChips trash={trash} />
         <Typography variant="body" color="text.secondary" sx={{ fontWeight: 'bold' }} component="div">
-            {trash.content.title || "random bs"}
+            {trash.content.title || <>untitled card</>}
         </Typography>
         <TimeAgoComp trash={trash} />
     </CardContent>;
@@ -84,7 +93,8 @@ function TextOnly({ trash }) {
 
 
 
-export default function trashdump() {
+export default async function trashdump() {
+    let ttr = await fetchTrashDumps();
     return <>
 
         <Nav />
@@ -97,11 +107,13 @@ export default function trashdump() {
         <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'space-evenly', flexWrap: "wrap" }}>
 
 
-            {trashtree.map((trash, i) =>
+            {ttr.map((trash, i) =>
                 <Card
                     padding={2}
                     elevation={0}
-                    sx={{ width: 300, textTransform: 'lowercase' }} key={i}
+                    sx={{ width: 300, textTransform: 'lowercase',
+                          marginBottom:2
+                }} key={i}
                 >
 
                     <TCard trash={trash} />
