@@ -11,16 +11,6 @@ const timeAgoParser = new timeAgo('en-US');
 
 trashtree.reverse();
 
-interface TrashContent {
-    title: String,
-    imgs: String[],
-    text: String
-}
-interface TrashType {
-    date: number,
-    content: TrashContent,
-}
-
 
 function TCard({ trash }) {
     if (trash.content.imgs.length == 1) {
@@ -111,7 +101,7 @@ export default function trashdump() {
         <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'space-evenly', flexWrap: "wrap" }}>
 
 
-            {trashtree.map((trash: TrashType, i) =>
+            {trashtree.map((trash, i) =>
                 <Card
                     padding={2}
                     elevation={0}
