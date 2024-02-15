@@ -8,6 +8,6 @@ timeAgo.addDefaultLocale(en)
 
 export function TimeAgoComp({ trash }) {
     const timeAgoParser = new timeAgo('en-US');
-    return (<Typography variant="caption" color="text.secondary" sx={{ textAlign: 'right', padding: 0 }} component="div"
+    return (<Typography variant="caption" color="text.secondary" title={new Date(trash.date).toString()} sx={{ textAlign: 'right', padding: 0 }} component="div"
     >{timeAgoParser.format(trash.date)}</Typography>)
 }
