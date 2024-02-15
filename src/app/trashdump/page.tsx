@@ -1,7 +1,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
-
+import { AppProps } from 'next/app';
 
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -11,6 +11,15 @@ const timeAgoParser = new timeAgo('en-US');
 
 trashtree.reverse();
 
+interface TrashContent{
+    title: String, 
+    imgs: String[],
+    text: String
+}
+interface TrashType{
+    date:number,
+    content: TrashContent,
+}
 
 
 function TCard({ trash }) {
@@ -95,7 +104,7 @@ export default function trashdump() {
         <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'space-evenly', flexWrap: "wrap" }}>
 
 
-            {trashtree.map((trash, i) =>
+            {trashtree.map((trash: TrashType, i) =>
                 <Card
                     padding={2}
                     elevation={0}
