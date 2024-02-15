@@ -14,3 +14,7 @@
 
 [functions]
     directory = "functions"
+
+[build]
+  command = "npm run build"
+  functions = "./functions"
