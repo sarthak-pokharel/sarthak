@@ -17,7 +17,7 @@ async function fetchTrashDumps(){
     let j = await (await fetch(process.env.URL+"/.netlify/functions/gettrashdumps",{ next: { revalidate: 3600/2 } })).text();
     console.log(j);
     j = JSON.parse(j);
-    return .sort(function(a,b){
+    return j.sort(function(a,b){
         return b.date-a.date;
     });
 }
