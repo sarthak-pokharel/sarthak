@@ -15,7 +15,7 @@ export default function Home() {
           site under construction
         </Typography>
         <Typography>
-          yet explorable, continue your journey.
+          yet explorable. you may continue your journey here.
         </Typography>
         <br/><br/><br/><br/>
         <Typography variant='h5' style={{textAlign:'center'}}>Looking for my &nbsp;
