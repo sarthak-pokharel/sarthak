@@ -27,8 +27,7 @@ async function fetchTrashDumps(){
         return b.date-a.date;
     });
     return j;
-}
-;
+};
 
 function TCard({ trash }) {
     if (trash.content.imgs.length == 1) {
