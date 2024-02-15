@@ -10,18 +10,16 @@ import en from 'javascript-time-ago/locale/en'
 import { FishNChips, TimeAgoComp } from "./Dynamics";
 timeAgo.addDefaultLocale(en)
 
-
+import {getAllDumpCollection} from './api';
 
 trashtree.reverse();
 
 async function fetchTrashDumps(){
-    // console.log(process.env.URL+"/.netlify/functions/gettrashdumps")
-    let j = await (await fetch("/api/gettrashdumps",{ next: { revalidate: 3600/2 } })).text();
-    console.log(j);
-    j = JSON.parse(j);
-    return j.sort(function(a,b){
+    let j = await getAllDumpCollection();
+    j.sort(function(a,b){
         return b.date-a.date;
     });
+    return j;
 }
 ;
 
