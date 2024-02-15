@@ -1,11 +1,16 @@
 [[redirects]]
-from = "/trash/*"
-to = "https://sarthak-pokharel.github.io/sarthak/[TrashDump]/:splat"
+    from = "/trash/*"
+    to = "https://sarthak-pokharel.github.io/sarthak/[TrashDump]/:splat"
 
 
 [[redirects]]
-from = "/blogslist/*"
-to = "https://sarthak-pokharel.github.io/sarthak/[Blogs]/:splat"
+    from = "/blogslist/*"
+    to = "https://sarthak-pokharel.github.io/sarthak/[Blogs]/:splat"
+
+[[redirects]]
+    from = "/api/*"
+    to = "/.netlify/functions/:splat"
+    status = 200
 
 [functions]
     directory = "functions"

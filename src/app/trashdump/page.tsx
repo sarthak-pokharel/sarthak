@@ -16,7 +16,7 @@ trashtree.reverse();
 
 async function fetchTrashDumps(){
     // console.log(process.env.URL+"/.netlify/functions/gettrashdumps")
-    let j = await (await fetch(process.env.URL+"/.netlify/functions/gettrashdumps",{ next: { revalidate: 3600/2 } })).text();
+    let j = await (await fetch("/api/gettrashdumps",{ next: { revalidate: 3600/2 } })).text();
     console.log(j);
     j = JSON.parse(j);
     return j.sort(function(a,b){
