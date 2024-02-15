@@ -1,0 +1,3 @@
+[[redirects]]
+from = "/trash/*"
+to = "https://sarthak-pokharel.github.io/sarthak/[TrashDump]/:splat"
