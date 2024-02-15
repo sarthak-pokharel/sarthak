@@ -10,12 +10,13 @@ import en from 'javascript-time-ago/locale/en'
 import { FishNChips, TimeAgoComp } from "./Dynamics";
 timeAgo.addDefaultLocale(en)
 
-import {getAllDumpCollection} from './api';
 
 trashtree.reverse();
 
 async function fetchTrashDumps(){
-    let j = await getAllDumpCollection();
+    let j = await (await fetch(process.env.URL+'/trashdump/api')).json();
+    // console.log(j);
+    // let j = []
     j.sort(function(a,b){
         return b.date-a.date;
     });
