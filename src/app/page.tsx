@@ -10,7 +10,14 @@ export default function Home() {
       <Nav />
       <main>
 
-        <div style={{position:'absolute', left:'50%', transform:'translateX(-50%)',bottom: '25%'}}>
+        <div style={{position:'absolute', left:'50%', transform:'translateX(-50%)',bottom: '35%',textAlign:'center'}} >
+        <Typography variant="h4">
+          site under construction
+        </Typography>
+        <Typography>
+          yet explorable, continue your journey.
+        </Typography>
+        <br/><br/><br/><br/>
         <Typography variant='h5' style={{textAlign:'center'}}>Looking for my &nbsp;
           <Link target="_blank" href="https://prof.sarthakpokhrel.com.np" style={{textDecoration:'none', color:'#00e'}}>
             Professional Portfolio
