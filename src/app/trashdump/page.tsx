@@ -91,7 +91,7 @@ function CardBottom({ trash }) {
         <FishNChips trash={trash} />
         <Typography variant="body" color="text.secondary" sx={{ fontWeight: 'bold' }} component="div">
             {trash.content.link?<>
-                <Link style={{color:"#0085ff", textDecoration:'none'}} href={trash.content.link} >{ttlCont(trash)}</Link>
+                <Link target="_blank" style={{color:"#0085ff", textDecoration:'none'}} href={trash.content.link} >{ttlCont(trash)}</Link>
             </>: ttlCont(trash)}
         </Typography>
         <TimeAgoComp trash={trash} />
