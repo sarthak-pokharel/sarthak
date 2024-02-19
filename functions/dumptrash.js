@@ -5,11 +5,11 @@ let admin = require('firebase-admin');
 const { readFileSync } = require('fs');
 
 let serviceAccount = JSON.parse(atob(process.env.service_acc_key));
-
+if(!admin.apps.length){
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
   });
-   
+}
 
 async function pushTrashDumpItem(item) {
     const db = admin.firestore();
@@ -31,7 +31,7 @@ exports.handler = async (event, context) => {
       const data = JSON.parse(event.body);
       let pushCont = data.dat;
       let pass = data.password
-      if(pass != process.env.make_post_pass){
+      if(pass != process.env.admin_pass){
         return {
           statusCode: 200, 
           body: JSON.stringify({success:false, error: "wrong password"})

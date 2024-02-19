@@ -5,10 +5,14 @@ let {getAllDumpCollection} = require('./test')
 
 require('dotenv').config();
 
-exports.handler = async (req, context) => {
+exports.handler = async (event, context) => {
+
+
+
   let col;
   try {
     col = await getAllDumpCollection();
+    col = col.filter(x=>!x.hidden)
     console.log(col)
   }catch {
     col = []; 

@@ -26,7 +26,7 @@ export function FishNChips({trash}){
         return <Chip key={i} label={lab} variant="outlined" size="small"
         
             sx={{cursor:'pointer', userSelect:'none'}}
-            onClick={()=>0}
+            onClick={(e)=>e.preventDefault()}
         />
     })}
 </div>)

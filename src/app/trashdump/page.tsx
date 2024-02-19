@@ -1,4 +1,5 @@
 import { Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from "@mui/material";
+import {Link as MLink} from "@mui/material";
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
 import { AppProps } from 'next/app';
@@ -9,6 +10,7 @@ import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { FishNChips, TimeAgoComp } from "./Dynamics";
 import Link from "next/link";
+import { useRef } from "react";
 timeAgo.addDefaultLocale(en)
 
 
@@ -17,7 +19,7 @@ trashtree.reverse();
 async function fetchTrashDumps(){
     let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ 
         next: { revalidate: (3600/60)*15 },
-        cache: 'no-store'
+        // cache: 'no-store'
     })).text();
 
     // console.log("thisiswhatigot",[j])
@@ -29,6 +31,7 @@ async function fetchTrashDumps(){
     // console.log(j,j.length);
     // console.log(j);
     // let j = []
+    console.log(j);
     j.sort(function(a,b){
         return b.date-a.date;
     });
@@ -122,7 +125,6 @@ function TextOnly({ trash }) {
 
 
 
-
 export default async function trashdump() {
     
     let _ttr = await fetchTrashDumps();
@@ -135,7 +137,27 @@ export default async function trashdump() {
         }
         tmap[isod].push(val);
     });
-    
+    let cardqe = (trash,i)=>{
+        return (<Card
+                    elevation={0}
+                    sx={{ width: 300, textTransform: 'lowercase',
+                          borderRadius: 6,
+                          marginBottom:2,
+                          padding: 1,
+                          transition: "box-shadow 0.3s ease",
+                          cursor: trash.content.link?'pointer':'auto',
+                          boxShadow: "inset 0 0px 10px 0px #858585",
+                          boxSizing:"border-box",
+                          "&:hover":{
+                            boxShadow: "none"
+                          }
+                          
+                }} key={i}
+                
+                >
+                    <TCard trash={trash} />
+                </Card>)
+    };
     
     return <>
 
@@ -149,22 +171,26 @@ export default async function trashdump() {
         {Object.entries(tmap).map(([date,ttr])=>{
             return <>
             <Typography sx={{textAlign:'center', marginBottom:1}} variant="h6">
-                <Chip sx={{userSelect:'none', cursor:'pointer'}} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
+                <Chip sx={{userSelect:'none'
+                , cursor:'pointer',
+                transform:'box-shadow 0.15s ease',
+                "&:hover":{
+                    boxShadow: "0 0px 10px 0px #858585"
+                }
+                
+                }} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
             </Typography>
             <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30,alignItems:'center' }}>
                 
 
 
             {ttr.map((trash, i) =>
-                <Card
-                    padding={2}
-                    elevation={0}
-                    sx={{ width: 300, textTransform: 'lowercase',
-                          marginBottom:2
-                }} key={i}
-                >
-                    <TCard trash={trash} />
-                </Card>
+                trash.content.link?
+                    <Link target="_blank" style={{textDecoration:'none', color: 'inherit'}} href={trash.content.link}>
+                        {cardqe(trash,i)}
+                </Link>
+                    
+                    :cardqe(trash,i)
 
             )}
 
