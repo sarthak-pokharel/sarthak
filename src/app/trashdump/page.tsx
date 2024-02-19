@@ -16,8 +16,8 @@ trashtree.reverse();
 
 async function fetchTrashDumps(){
     let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ 
-        // next: { revalidate: 3600/4 },
-        cache: 'no-store'
+        next: { revalidate: 3600/4 },
+        // cache: 'no-store'
     })).text();
 
     // console.log("thisiswhatigot",[j])
