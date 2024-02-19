@@ -123,7 +123,21 @@ function TextOnly({ trash }) {
     </>
 }
 
+function convertToKathmanduDate(timestamp) {
+    // Create a Date object from the timestamp
+    const date = new Date(timestamp);
 
+    // Specify the Kathmandu timezone
+    const options = { timeZone: 'Asia/Kathmandu', hour12: false };
+
+    // Format the date and time according to Kathmandu's local time
+    const formattedDate = new Intl.DateTimeFormat('en-US', {
+        ...options,
+        year: 'numeric', month: '2-digit', day: '2-digit'
+    }).format(date);
+
+    return formattedDate;
+}
 
 
 export default async function trashdump() {
@@ -132,7 +146,7 @@ export default async function trashdump() {
 
     let tmap = {};
     _ttr.forEach(val =>{
-        let isod = new Date(val.date).toLocaleDateString();
+        let isod = convertToKathmanduDate(val.date);
         if(!tmap[isod]){
             tmap[isod] = [];
         }

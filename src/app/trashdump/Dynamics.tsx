@@ -14,7 +14,7 @@ export function TimeAgoComp({ trash }) {
         color="text.secondary" 
         title={
             
-            getLocTime(trash.date)
+            new Date(trash.date).toString()
         } 
         sx={{ textAlign: 'right', padding: 0 }} 
         component="div"
