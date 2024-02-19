@@ -146,11 +146,11 @@ export default async function trashdump() {
                           marginBottom:2,
                           padding: 1,
                           transition: "box-shadow 0.3s ease",
-                          cursor: trash.content.link?'pointer':'auto',
+                          cursor: trash.content.link?'pointer':'default',
                           boxShadow: "inset 0 0px 10px 0px #858585",
                           boxSizing:"border-box",
                           "&:hover":{
-                            boxShadow: "none"
+                            // boxShadow: "none"
                           }
                           
                 }} key={i}
@@ -181,7 +181,7 @@ export default async function trashdump() {
                 
                 }} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
             </Typography>
-            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30,alignItems:'center' }}>
+            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30, }}>
                 
 
 
