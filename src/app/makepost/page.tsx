@@ -1,14 +1,15 @@
 "use client";
-import { Button, Chip, FormControl, Stack, TextField } from "@mui/material";
+import { Button, Chip, FormControl, IconButton, Stack, TextField } from "@mui/material";
 import Nav from "../Components/Nav";
 import { useState } from "react";
 import axios from 'axios';
+import { Add } from "@mui/icons-material";
 
-async function makeSubmitApiReq({upCont, password}){
+async function makeSubmitApiReq({ upCont, password }) {
     let dat = upCont;
     let tp = {
         content: {
-            title: dat.title, 
+            title: dat.title,
             text: dat.content,
             imgs: [],
             link: dat.link
@@ -17,11 +18,11 @@ async function makeSubmitApiReq({upCont, password}){
         labels: dat.labels
     };
 
-    let req = await axios.post("/api/dumptrash", {dat: tp, password});
+    let req = await axios.post("/api/dumptrash", { dat: tp, password });
     // console.log(req);
-    if(req.data.success){
+    if (req.data.success) {
         console.log("Posted");
-    }else {
+    } else {
         console.log(req.data.error)
     }
     return true;
@@ -51,25 +52,25 @@ export default function makepost() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Submit your form data here
-        console.log({ title, content, labels,link });
+        console.log({ title, content, labels, link });
 
-        makeSubmitApiReq({upCont: {title, content, labels}, password})
+        makeSubmitApiReq({ upCont: { title, content, labels }, password })
     };
     return <>
         <Nav />
-        <br/>
-        <br/>
+        <br />
+        <br />
 
-        <form onSubmit={handleSubmit} style={{ 
-            display:'block', 
-            maxWidth: 500, 
-            width: '90%', 
-            textAlign: 'center', 
+        <form onSubmit={handleSubmit} style={{
+            display: 'block',
+            maxWidth: 500,
+            width: '90%',
+            textAlign: 'center',
             margin: 'auto',
             background: '#fff',
             padding: "2%",
             borderRadius: 20
-            }}>
+        }}>
 
             <Stack spacing={2}>
                 <TextField
@@ -92,14 +93,21 @@ export default function makepost() {
                     value={link}
                     onChange={(e) => setLink(e.target.value)}
                 />
-                
-                <TextField
-                    label="Labels"
-                    variant="outlined"
-                    value={label}
-                    onChange={(e) => setLabel(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleAddLabel(e)}
-                />
+                <FormControl sx={{flexDirection:'row'}}>
+                    <TextField
+                        label="Labels"
+                        variant="outlined"
+                        fullWidth
+                        value={label}
+                        onChange={(e) => setLabel(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleAddLabel(e)}
+                    />
+                    <IconButton onClick={(e)=>{
+                        handleAddLabel({preventDefault: ()=>0});
+                    }}>
+                        <Add />
+                    </IconButton>   
+                </FormControl>
                 <Stack direction="row" spacing={1}>
                     {labels.map((data, index) => (
                         <Chip
@@ -109,7 +117,7 @@ export default function makepost() {
                         />
                     ))}
                 </Stack>
-                <br/>
+                <br />
                 <TextField
                     label="Password"
                     type="password"
