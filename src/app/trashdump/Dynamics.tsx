@@ -11,7 +11,10 @@ export function TimeAgoComp({ trash }) {
     return (<Typography 
         variant="caption" 
         color="text.secondary" 
-        title={new Date(trash.date).toString()} 
+        title={
+            
+            (()=>{let v = new Date().toLocaleTimeString().split(" ");return v[0].split(":").slice(0,2).join(":")+" "+v[1]; })()
+        } 
         sx={{ textAlign: 'right', padding: 0 }} 
         component="div"
     >{timeAgoParser.format(trash.date)}</Typography>)
