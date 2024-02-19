@@ -195,7 +195,7 @@ export default async function trashdump() {
                 
                 }} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
             </Typography>
-            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30, }}>
+            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30, alignItems:'center'}}>
                 
 
 
