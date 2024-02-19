@@ -105,7 +105,7 @@ function TextOnly({ trash }) {
     let proc_cont = trash.content.text.trim();
     // proc_cont = marked(trash.content.text);
     return <>
-        <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between',color:"#4c4c4c" }}>
 
             <CardContent>
                 <Typography

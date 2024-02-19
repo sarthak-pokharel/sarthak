@@ -25,7 +25,7 @@ export function FishNChips({trash}){
     {trash.labels.map((lab,i)=>{
         return <Chip key={i} label={lab} variant="outlined" size="small"
         
-            sx={{cursor:'pointer', userSelect:'none'}}
+            sx={{cursor:'pointer',color:"#585858", userSelect:'none'}}
             onClick={(e)=>e.preventDefault()}
         />
     })}
