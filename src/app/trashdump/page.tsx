@@ -4,17 +4,21 @@ import trashtree from '../../../[TrashDump]/trashtree.json';
 import { AppProps } from 'next/app';
 import { marked } from "marked";
 import './page.css'
-
+import fecha from 'fecha';
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import { FishNChips, TimeAgoComp } from "./Dynamics";
+import Link from "next/link";
 timeAgo.addDefaultLocale(en)
 
 
 trashtree.reverse();
 
 async function fetchTrashDumps(){
-    let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ next: { revalidate: 3600/4 } })).text();
+    let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ 
+        next: { revalidate: 3600/4 },
+        // cache: 'no-store'
+    })).text();
 
     // console.log("thisiswhatigot",[j])
     try{
@@ -22,7 +26,7 @@ async function fetchTrashDumps(){
     }catch{
         j = [];
     }
-    console.log(j,j.length);
+    // console.log(j,j.length);
     // console.log(j);
     // let j = []
     j.sort(function(a,b){
@@ -75,18 +79,28 @@ function ClassicTCard({ trash }) {
     </>);
 }
 function CardBottom({ trash }) {
+    let ttlCont = function(v){
+        return (<>
+        
+        {v.content.title|| <>untitled card</>}
+        
+    </>);
+    };
+    console.log(trash,'w')
     return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important" }}>
         <FishNChips trash={trash} />
         <Typography variant="body" color="text.secondary" sx={{ fontWeight: 'bold' }} component="div">
-            {trash.content.title || <>untitled card</>}
+            {trash.content.link?<>
+                <Link style={{color:"#0085ff", textDecoration:'none'}} href={trash.content.link} >{ttlCont(trash)}</Link>
+            </>: ttlCont(trash)}
         </Typography>
         <TimeAgoComp trash={trash} />
     </CardContent>;
 }
 
 function TextOnly({ trash }) {
-    let proc_cont = trash.content.text;
-    proc_cont = marked(trash.content.text);
+    let proc_cont = trash.content.text.trim();
+    // proc_cont = marked(trash.content.text);
     return <>
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
 
@@ -95,7 +109,9 @@ function TextOnly({ trash }) {
 
                     sx={{ "whiteSpace": "pre-wrap" }}
                 >
-                    <div dangerouslySetInnerHTML={{__html: proc_cont}}></div>
+                    <div>
+                        {proc_cont}
+                    </div>
                 </Typography>
             </CardContent>
             <CardBottom trash={trash} />
@@ -108,8 +124,19 @@ function TextOnly({ trash }) {
 
 
 export default async function trashdump() {
-    let ttr = await fetchTrashDumps();
-    // let ttr = trashtree;
+    
+    let _ttr = await fetchTrashDumps();
+
+    let tmap = {};
+    _ttr.forEach(val =>{
+        let isod = new Date(val.date).toISOString().split("T")[0];
+        if(!tmap[isod]){
+            tmap[isod] = [];
+        }
+        tmap[isod].push(val);
+    });
+    
+    
     return <>
 
         <Nav />
@@ -119,7 +146,13 @@ export default async function trashdump() {
         <br />
         <br />
         <br />
-        <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'space-evenly', flexWrap: "wrap" }}>
+        {Object.entries(tmap).map(([date,ttr])=>{
+            return <>
+            <Typography sx={{textAlign:'center', marginBottom:1}} variant="h6">
+                <Chip sx={{userSelect:'none', cursor:'pointer'}} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
+            </Typography>
+            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30,alignItems:'center' }}>
+                
 
 
             {ttr.map((trash, i) =>
@@ -130,13 +163,15 @@ export default async function trashdump() {
                           marginBottom:2
                 }} key={i}
                 >
-
                     <TCard trash={trash} />
                 </Card>
 
             )}
 
         </div>
+        
+        </>
+        })}
 
     </>
 }

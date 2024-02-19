@@ -20,42 +20,25 @@ async function pushTrashDumpItem(item) {
 
 
 let prompt = require('prompt');
+const { tcont } = require('./pushTemp');
 
 prompt.start();
 
 
 
 
-(async function () {
-    let {title, content, labels} = await prompt.get(['title', 'content', 'labels']);
-    if(!title) title = "";
-    if(!content) content = ""
-    if(!labels) labels = "random-bs";
-    let date = Date.now();
-    let v = {
-        content:{
-            text: content,
-            title: title,
-            imgs: []
-        },
-        date,
-        labels: labels.split(" ")
-    };
-    console.log(v);
-    await pushTrashDumpItem(v);
-});
-
-
 
 
 (async function () {
-    let v = JSON.parse(readFileSync('./pushTemp.json').toString());
+    // let v = JSON.parse(readFileSync('./pushTemp.json').toString());
+    let v = tcont;
     if(v.date == null){
         v.date=Date.now()
     }
     if(v.labels.length == 0){
         v.labels = ["random-bs"]
     }
+    v.content.text = v.content.text.trim();
     console.log(v);
     await pushTrashDumpItem(v);
 })();
