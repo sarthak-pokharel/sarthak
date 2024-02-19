@@ -7,7 +7,7 @@ timeAgo.addDefaultLocale(en)
 
 
 export function TimeAgoComp({ trash }) {
-    let getLocTime = ((dtstmp)=>{let v = new Date(dtstmp).toLocaleTimeString().split(" ");return v[0].split(":").slice(0,2).join(":")+" "+v[1]; });
+    let getLocTime = (()=>{let v = new Date(trash.date);return v.getHours().toString().padStart(2,'0')+":"+v.getMinutes().toString().padStart(2,'0')});
     const timeAgoParser = new timeAgo('en-US');
     return (<Typography 
         variant="caption" 
