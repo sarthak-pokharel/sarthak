@@ -7,18 +7,18 @@ timeAgo.addDefaultLocale(en)
 
 
 export function TimeAgoComp({ trash }) {
-    let getLocTime = (()=>{let v = new Date(trash.date).toLocaleTimeString().split(" ");return v[0].split(":").slice(0,2).join(":")+" "+v[1]; });
+    let getLocTime = ((dtstmp)=>{let v = new Date(dtstmp).toLocaleTimeString().split(" ");return v[0].split(":").slice(0,2).join(":")+" "+v[1]; });
     const timeAgoParser = new timeAgo('en-US');
     return (<Typography 
         variant="caption" 
         color="text.secondary" 
         title={
             
-            getLocTime()
+            getLocTime(trash.date)
         } 
         sx={{ textAlign: 'right', padding: 0 }} 
         component="div"
-    >{timeAgoParser.format(trash.date)} | {getLocTime()}</Typography>)
+    >{timeAgoParser.format(trash.date)} | {getLocTime(trash.date)}</Typography>)
 }
 export function FishNChips({trash}){
     return (<div style={{marginBottom:5, display:"flex", gap:4}}>
