@@ -35,6 +35,7 @@ async function fetchTrashDumps(){
     j.sort(function(a,b){
         return b.date-a.date;
     });
+    
     return j;
 };
 
@@ -131,7 +132,7 @@ export default async function trashdump() {
 
     let tmap = {};
     _ttr.forEach(val =>{
-        let isod = new Date(val.date).toISOString().split("T")[0];
+        let isod = new Date(val.date).toLocaleDateString();
         if(!tmap[isod]){
             tmap[isod] = [];
         }
