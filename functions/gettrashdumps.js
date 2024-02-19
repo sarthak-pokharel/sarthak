@@ -9,6 +9,7 @@ exports.handler = async (req, context) => {
   let col;
   try {
     col = await getAllDumpCollection();
+    console.log(col)
   }catch {
     col = []; 
   }

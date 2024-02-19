@@ -29,6 +29,8 @@ async function getAllDumpCollection() {
 
 export async function GET() {
     // Do whatever you want
-    return NextResponse.json(await getAllDumpCollection(), { status: 200 });
+    let d = await getAllDumpCollection();
+    console.log(d);
+    return NextResponse.json(d, { status: 200 });
   }
   
