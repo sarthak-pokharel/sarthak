@@ -1,6 +1,5 @@
 ### echoes of a creative soul
 
-a wondering student,\
 an explorer,\
 seeker of the truth.
 
