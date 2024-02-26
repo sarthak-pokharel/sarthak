@@ -8,7 +8,7 @@ import './page.css'
 import fecha from 'fecha';
 import timeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import { FishNChips, TimeAgoComp } from "./Dynamics";
+import { FishNChips, ReadMoreBtn, TimeAgoComp } from "./Dynamics";
 import Link from "next/link";
 import { useRef } from "react";
 timeAgo.addDefaultLocale(en)
@@ -83,6 +83,7 @@ function ClassicTCard({ trash }) {
     </>);
 }
 function CardBottom({ trash }) {
+    
     let ttlCont = function(v){
         return (<>
         
@@ -102,8 +103,12 @@ function CardBottom({ trash }) {
     </CardContent>;
 }
 
+
+
 function TextOnly({ trash }) {
     let proc_cont = trash.content.text.trim();
+    let proc_cont_len = proc_cont.length;
+    let char_max_lim = 200;
     // proc_cont = marked(trash.content.text);
     return <>
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between',color:"#4c4c4c" }}>
@@ -113,11 +118,14 @@ function TextOnly({ trash }) {
 
                     sx={{ "whiteSpace": "pre-wrap" }}
                 >
-                    <div>
-                        {proc_cont}
+                    <div style={{fontSize:proc_cont_len<200?"1em":"1em"}}>
+                        {proc_cont.slice(0,char_max_lim)}{proc_cont_len>200?"...":""}
                     </div>
                 </Typography>
             </CardContent>
+            
+            {proc_cont_len>200?<ReadMoreBtn trash={trash} />:""}
+            
             <CardBottom trash={trash} />
         </div>
     </>

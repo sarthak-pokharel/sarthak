@@ -53,6 +53,14 @@ async function pushTrashDumpItem(item) {
   
 }
 
+async function deletePost(id){
+  const db = admin.firestore();
+  let docRef  = await db.collection('trashdump').doc(id);
+  // let val = (await docRef.get()).data();
+  // console.log(val);
+  await docRef.delete();
+  return true; 
+}
 
-module.exports = {getAllDumpCollection,getAllDumpCollectionAdmin,togglePostState};
+module.exports = {getAllDumpCollection,getAllDumpCollectionAdmin,togglePostState,deletePost};
 // export getAllDumpCollection;

@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import Nav from "../Components/Nav";
 import axios from "axios";
-import { Button, Card, CardActionArea, CardContent, Switch, Typography } from "@mui/material";
+import { Backdrop, Button, Card, CardActionArea, CardContent, CircularProgress, IconButton, Switch, Typography } from "@mui/material";
 import { FishNChips, TimeAgoComp } from "../trashdump/Dynamics";
 import Link from "next/link";
+import { Delete } from "@mui/icons-material";
 
 
 
@@ -78,11 +79,15 @@ async function switchPostState(id, state, password){
     let fn = await axios.post('/api/togglepoststate',{id, state, password});
     return fn.data.success;
 }
+async function deletePost(id, password) {
+    let fn = await axios.post("/api/deleteTrashPost", {id, password});
+    return fn.data.success;
+}
 
 export default function admin(){
     let [password, setPassword] = useState("");
     let [posts_info, setPostsInfo] = useState([]);
-    let [loading, setLoading] = useState([]);
+    let [isLoading, setLoading] = useState(false);
 
 
 
@@ -96,7 +101,7 @@ export default function admin(){
         
         getAllPostsAdmin(password).then(posts=>setPostsInfo(posts));
     },[password]);
-    let cardqe = (trash,i)=>{
+    let cardqe = (trash,i,isLoading, setLoading)=>{
         return (<Card
                     elevation={0}
                     sx={{ width: 300, textTransform: 'lowercase',
@@ -112,15 +117,31 @@ export default function admin(){
                           }
                           
                 }} key={i}
-                
                 >
-                    <div><Switch checked={!trash.hidden} onClick={(async v=>{
+                    
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <Switch checked={!trash.hidden} onClick={(async v=>{
+                        setLoading(true);
                         if(!(await switchPostState(posts_info[i].id, !posts_info[i].hidden, password))){
                             return console.log("error");
                         }
                         posts_info[i].hidden = !posts_info[i].hidden;
                         setPostsInfo([...posts_info]);
-                    })} /></div>
+                        setLoading(false);
+                    })} />
+                    <IconButton onClick={(async v=>{
+                        setLoading(true);
+                        if(!(await deletePost(posts_info[i].id, password))){
+                            return console.log("error");
+                        }
+                        
+                        posts_info.splice(i,1);
+                        setPostsInfo([...posts_info]);
+                        setLoading(false);
+                    })}>
+                        <Delete/>
+                    </IconButton>
+                    </div>
                     <TextOnly trash={trash} />
                 </Card>)
     };
@@ -129,10 +150,11 @@ export default function admin(){
     <Nav />
     <br/>
     <br/>
+    <Backdrop sx={{zIndex:'99'}} open={isLoading}><CircularProgress/></Backdrop>
     <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30,alignItems:'center' }}>
     {posts_info.map((post,i)=>{
             console.log(post);
-            return cardqe(post,i);
+            return cardqe(post,i,isLoading, setLoading);
         })}
     </div>
     </>
