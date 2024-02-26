@@ -1,5 +1,5 @@
 import { Card, CardActionArea, CardContent, CardMedia, Chip, Typography } from "@mui/material";
-import {Link as MLink} from "@mui/material";
+import { Link as MLink } from "@mui/material";
 import Nav from "../Components/Nav";
 import trashtree from '../../../[TrashDump]/trashtree.json';
 import { AppProps } from 'next/app';
@@ -16,26 +16,26 @@ timeAgo.addDefaultLocale(en)
 
 trashtree.reverse();
 
-async function fetchTrashDumps(){
-    let j = await (await fetch(process.env.URL+'/api/gettrashdumps',{ 
+async function fetchTrashDumps() {
+    let j = await (await fetch(process.env.URL + '/api/gettrashdumps', {
         // next: { revalidate: (3600/60)*15 },
         cache: 'no-store'
     })).text();
 
     // console.log("thisiswhatigot",[j])
-    try{
+    try {
         j = JSON.parse(j);
-    }catch{
+    } catch {
         j = [];
     }
     // console.log(j,j.length);
     // console.log(j);
     // let j = []
     console.log(j);
-    j.sort(function(a,b){
-        return b.date-a.date;
+    j.sort(function (a, b) {
+        return b.date - a.date;
     });
-    
+
     return j;
 };
 
@@ -53,7 +53,7 @@ function ClassicTCard({ trash }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between' }}>
             <div>
-                <div style={{textAlign:'center', display:'flex', justifyContent:'center'}}>
+                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
                     {trash.content.imgs[0] ?
 
                         <CardMedia
@@ -83,21 +83,21 @@ function ClassicTCard({ trash }) {
     </>);
 }
 function CardBottom({ trash }) {
-    
-    let ttlCont = function(v){
+
+    let ttlCont = function (v) {
         return (<>
-        
-        {v.content.title|| <>untitled card</>}
-        
-    </>);
+
+            {v.content.title || <>untitled card</>}
+
+        </>);
     };
-    console.log(trash,'w')
+    console.log(trash, 'w')
     return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important" }}>
         <FishNChips trash={trash} />
-        <Typography variant="body" color="text.secondary" sx={{ fontWeight: 'bold' }} component="div">
-            {trash.content.link?<>
-                <Link target="_blank" style={{color:"#0085ff", textDecoration:'none'}} href={trash.content.link} >{ttlCont(trash)}</Link>
-            </>: ttlCont(trash)}
+        <Typography variant="body" color="#414141" sx={{ fontWeight: 'bold' }} component="div">
+            {trash.content.link ? <>
+                <Link target="_blank" style={{ color: "#0085ff", textDecoration: 'none' }} href={trash.content.link} >{ttlCont(trash)}</Link>
+            </> : ttlCont(trash)}
         </Typography>
         <TimeAgoComp trash={trash} />
     </CardContent>;
@@ -108,24 +108,30 @@ function CardBottom({ trash }) {
 function TextOnly({ trash }) {
     let proc_cont = trash.content.text.trim();
     let proc_cont_len = proc_cont.length;
-    let char_max_lim = 200;
+    let char_max_lim = 120;
     // proc_cont = marked(trash.content.text);
     return <>
-        <div style={{ display: 'flex', flexDirection: 'column', height: "100%", justifyContent: 'space-between',color:"#4c4c4c" }}>
+        <div style={{ display: 'flex', 
+        flexDirection: 'column', 
+        height: "100%", 
+        justifyContent: 'space-between', 
+        color: "#414141" }}>
 
             <CardContent>
                 <Typography
 
                     sx={{ "whiteSpace": "pre-wrap" }}
                 >
-                    <div style={{fontSize:proc_cont_len<200?"1em":"1em"}}>
-                        {proc_cont.slice(0,char_max_lim)}{proc_cont_len>200?"...":""}
+                    <div style={{ fontSize: proc_cont_len < 200 ? "1em" : "1em" }}>
+                        {trash.content.link?<>{proc_cont}</>:<>
+                            {proc_cont.slice(0, char_max_lim)}{proc_cont_len > 200 ? "..." : ""}
+                        </>}
                     </div>
                 </Typography>
             </CardContent>
-            
-            {proc_cont_len>200?<ReadMoreBtn trash={trash} />:""}
-            
+
+            {proc_cont_len > 200 ? <ReadMoreBtn trash={trash} /> : ""}
+
             <CardBottom trash={trash} />
         </div>
     </>
@@ -149,39 +155,42 @@ function convertToKathmanduDate(timestamp) {
 
 
 export default async function trashdump() {
-    
+
     let _ttr = await fetchTrashDumps();
 
     let tmap = {};
-    _ttr.forEach(val =>{
+    _ttr.forEach(val => {
         let isod = convertToKathmanduDate(val.date);
-        if(!tmap[isod]){
+        if (!tmap[isod]) {
             tmap[isod] = [];
         }
         tmap[isod].push(val);
     });
-    let cardqe = (trash,i)=>{
+    let cardqe = (trash, i) => {
         return (<Card
-                    elevation={0}
-                    sx={{ width: 300, textTransform: 'lowercase',
-                          borderRadius: 6,
-                          marginBottom:2,
-                          padding: 1,
-                          transition: "box-shadow 0.3s ease",
-                          cursor: trash.content.link?'pointer':'default',
-                          boxShadow: "inset 0 0px 10px 0px #858585",
-                          boxSizing:"border-box",
-                          "&:hover":{
-                            // boxShadow: "none"
-                          }
-                          
-                }} key={i}
-                
-                >
-                    <TCard trash={trash} />
-                </Card>)
+            elevation={0}
+            sx={{
+                width: 300, textTransform: 'lowercase',
+                borderRadius: 6,
+                marginBottom: 2,
+                padding: 1,
+                transition: "box-shadow 0.3s ease",
+                cursor: trash.content.link ? 'pointer' : 'default',
+                background:"#0000",
+                border:"1px solid #797979",
+                // boxShadow: "inset 0 0px 10px 0px #858585",
+                boxSizing: "border-box",
+                "&:hover": {
+                    // boxShadow: "none"
+                }
+
+            }} key={i}
+
+        >
+            <TCard trash={trash} />
+        </Card>)
     };
-    
+
     return <>
 
         <Nav />
@@ -191,36 +200,64 @@ export default async function trashdump() {
         <br />
         <br />
         <br />
-        {Object.entries(tmap).map(([date,ttr])=>{
-            return <>
-            <Typography sx={{textAlign:'center', marginBottom:1}} variant="h6">
-                <Chip sx={{userSelect:'none'
-                , cursor:'pointer',
-                transform:'box-shadow 0.15s ease',
-                "&:hover":{
-                    boxShadow: "0 0px 10px 0px #858585"
-                }
-                
-                }} label={fecha.format(new Date(date), 'mediumDate')}></Chip>
-            </Typography>
-            <div style={{ textAlign: 'left', display: 'flex', justifyContent: 'center', gap: 40, flexWrap: "wrap", marginBottom:30, alignItems:'center'}}>
-                
+        <div style={{
+            display:'flex', 
+            justifyContent:'space-around', 
+            flexWrap:'wrap',
+            
+    
+    
+    }}>
+            {Object.entries(tmap).map(([date, ttr]) => {
+                return <>
+                    <div style={{
+                        boxSizing:'border-box',
+                        padding:"1%",
+                        borderRadius:20,
+                        marginBottom:20,
+                        border:'1px solid #797979',
+                        marginLeft:20,
+                        marginRight:20
+                    }}>
+                        <Typography sx={{ textAlign: 'center', marginBottom: 1 }} variant="h6">
+                            <Chip sx={{
+                                userSelect: 'none'
+                                , cursor: 'pointer',
+                                transform: 'box-shadow 0.05s ease',
+                                borderColor:'#797979',
+                                "&:hover": {
+                                    background:"#0001"
+                                }
+
+                            }} variant="outlined" label={fecha.format(new Date(date), 'mediumDate')}></Chip>
+                        </Typography>
+                        <div style={{ 
+                            textAlign: 'left', 
+                            display: 'flex', 
+                            justifyContent: 'center', 
+                            gap: 15, 
+                            flexWrap: "wrap", 
+                            marginBottom: 20, 
+                            alignItems: 'center' }}>
 
 
-            {ttr.map((trash, i) =>
-                trash.content.link?
-                    <Link target="_blank" style={{textDecoration:'none', color: 'inherit'}} href={trash.content.link}>
-                        {cardqe(trash,i)}
-                </Link>
-                    
-                    :cardqe(trash,i)
 
-            )}
+                            {ttr.map((trash, i) =>
+                                trash.content.link ?
+                                    <Link target="_blank" style={{ textDecoration: 'none', color: 'inherit' }} href={trash.content.link}>
+                                        {cardqe(trash, i)}
+                                    </Link>
 
+                                    : cardqe(trash, i)
+
+                            )}
+
+                        </div>
+                    </div>
+
+                </>
+            })}
         </div>
-        
-        </>
-        })}
 
     </>
 }

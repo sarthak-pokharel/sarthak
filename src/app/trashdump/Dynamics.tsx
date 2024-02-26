@@ -22,11 +22,11 @@ export function TimeAgoComp({ trash }) {
     >{timeAgoParser.format(trash.date)} | {getLocTime(trash.date)}</Typography>)
 }
 export function FishNChips({ trash }) {
-    return (<div style={{ marginBottom: 5, display: "flex", gap: 4 }}>
+    return (<div style={{ marginBottom: 5, display: "flex", gap: 4, flexWrap:'wrap' }}>
         {trash.labels.map((lab, i) => {
             return <Chip key={i} label={lab} variant="outlined" size="small"
 
-                sx={{ cursor: 'pointer', color: "#585858", userSelect: 'none' }}
+                sx={{ cursor: 'pointer', color: "#414141", borderColor:"#414141", userSelect: 'none' }}
                 onClick={(e) => e.preventDefault()}
             />
         })}
@@ -40,7 +40,15 @@ export function ReadMoreBtn({ trash }) {
     let [showDialog, setShowDialog] = useState(false);
     return !trash.content.link ? <>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: "90%", margin: "auto", marginBottom:7 }}>
-            <Button variant="outlined" onClick={e => setShowDialog(true)}>READ MORE</Button>
+            <Button
+            sx={{
+                color:"#555",
+                borderColor:"#555",
+                "&:hover":{
+                    borderColor:"#777"
+                }
+            }}
+            variant="outlined" onClick={e => setShowDialog(true)}>READ MORE</Button>
         </div>
         <ShowMoreBackDrop trash={trash} display={showDialog} setDisplay={setShowDialog} />
     </> : <></>;
