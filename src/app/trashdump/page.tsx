@@ -120,9 +120,12 @@ function TextOnly({ trash }) {
             <CardContent>
                 <Typography
 
-                    sx={{ "whiteSpace": "pre-wrap" }}
+                    sx={{ 
+                        whiteSpace: "pre-wrap", 
+                        fontFamily:`system-ui` 
+                    }}
                 >
-                    <div style={{ fontSize: proc_cont_len < 200 ? "1em" : "1em" }}>
+                    <div style={{ fontSize: (proc_cont_len > char_max_lim && trash.content.link) ? "0.85em" : "1em" }}>
                         {trash.content.link?<>{proc_cont}</>:<>
                             {proc_cont.slice(0, char_max_lim)}{proc_cont_len > 200 ? "..." : ""}
                         </>}
