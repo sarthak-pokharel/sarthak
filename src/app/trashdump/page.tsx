@@ -16,6 +16,8 @@ timeAgo.addDefaultLocale(en)
 
 trashtree.reverse();
 
+export let defFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+
 async function fetchTrashDumps() {
     let j = await (await fetch(process.env.URL + '/api/gettrashdumps', {
         // next: { revalidate: (3600/60)*15 },
@@ -92,7 +94,7 @@ function CardBottom({ trash }) {
         </>);
     };
     console.log(trash, 'w')
-    return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important" }}>
+    return <CardContent sx={{ paddingTop: 0, paddingBottom: "0 !important",fontFamily:defFont }}>
         <FishNChips trash={trash} />
         <Typography variant="body" color="#414141" sx={{ fontWeight: 'bold' }} component="div">
             {trash.content.link ? <>
@@ -122,7 +124,7 @@ function TextOnly({ trash }) {
 
                     sx={{ 
                         whiteSpace: "pre-wrap", 
-                        fontFamily:`system-ui` 
+                        fontFamily:defFont 
                     }}
                 >
                     <div style={{ fontSize: (proc_cont_len > char_max_lim && trash.content.link) ? "0.85em" : "1em" }}>
@@ -230,7 +232,8 @@ export default async function trashdump() {
                                 borderColor:'#797979',
                                 "&:hover": {
                                     background:"#0001"
-                                }
+                                },
+                                "fontFamily":defFont
 
                             }} variant="outlined" label={fecha.format(new Date(date), 'mediumDate')}></Chip>
                         </Typography>

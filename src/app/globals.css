@@ -4,5 +4,9 @@ body {
     color: #000;
     /* background: url(./Assets/bookcover.jpg); */
     background-color: #e0cfaa;
+    font-family: system-ui !important;
     
+}
+button {
+    font-family: system-ui !important;
 }
