@@ -39,8 +39,8 @@ export function FishNChips({ trash }) {
 export function ReadMoreBtn({ trash }) {
     let [showDialog, setShowDialog] = useState(false);
     return !trash.content.link ? <>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', width: "90%", margin: "auto" }}>
-            <Button onClick={e => setShowDialog(true)}>READ MORE</Button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: "90%", margin: "auto", marginBottom:7 }}>
+            <Button variant="outlined" onClick={e => setShowDialog(true)}>READ MORE</Button>
         </div>
         <ShowMoreBackDrop trash={trash} display={showDialog} setDisplay={setShowDialog} />
     </> : <></>;
@@ -66,7 +66,7 @@ function ShowMoreBackDrop({ trash, display, setDisplay }) {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ display: 'flex', justifyContent: "flex-end" }}>
-                    <Button>Close</Button>
+                    <Button variant="outlined" onClick={e=>setDisplay(false)}>Close</Button>
                 </CardActions>
             </Card>
         </Backdrop>
