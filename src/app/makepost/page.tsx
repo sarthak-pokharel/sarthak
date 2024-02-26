@@ -49,12 +49,18 @@ export default function makepost() {
         setLabels((chips) => chips.filter((chip) => chip !== chipToDelete));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // Submit your form data here
         console.log({ title, content, labels, link });
 
-        makeSubmitApiReq({ upCont: { title, content, labels }, password })
+        await makeSubmitApiReq({ upCont: { title, content, labels }, password });
+        setTitle("");
+        setLink("");
+        setContent("");
+        setLabels([]);
+        setLabel("");
+        setPassword("");
     };
     return <>
         <Nav />
