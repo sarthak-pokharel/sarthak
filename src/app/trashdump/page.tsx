@@ -21,8 +21,8 @@ export let defFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
 async function fetchTrashDumps() {
     let reval_time = 0.9; //hr
     let j = await (await fetch(process.env.URL + '/api/gettrashdumps', {
-        next: { revalidate: (3600/60)*60*reval_time },
-        // cache: 'no-store'
+        // next: { revalidate: (3600/60)*60*reval_time },
+        cache: 'no-store'
     })).text();
 
     // console.log("thisiswhatigot",[j])
