@@ -19,9 +19,10 @@ trashtree.reverse();
 export let defFont = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
 
 async function fetchTrashDumps() {
+    let reval_time = 0.9; //hr
     let j = await (await fetch(process.env.URL + '/api/gettrashdumps', {
-        // next: { revalidate: (3600/60)*15 },
-        cache: 'no-store'
+        next: { revalidate: (3600/60)*60*reval_time },
+        // cache: 'no-store'
     })).text();
 
     // console.log("thisiswhatigot",[j])
