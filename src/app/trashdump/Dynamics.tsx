@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { defFont } from "./page";
 timeAgo.addDefaultLocale(en)
 
-
 export function TimeAgoComp({ trash }) {
     let getLocTime = (() => { let v = new Date(trash.date); return v.getHours().toString().padStart(2, '0') + ":" + v.getMinutes().toString().padStart(2, '0') });
     const timeAgoParser = new timeAgo('en-US');
