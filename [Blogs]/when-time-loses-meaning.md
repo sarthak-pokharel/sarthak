@@ -11,7 +11,7 @@ except its not a curse this time.
 add that to being on your own,\
 independent of soul crushing expectations from yourself\
 independent of poisoned chains of infected souls\
-independent of any lethal deluding chemicals\
+independent of any lethal deluding chemicals
 
 that sensation of a warm blessing\
 every rays that hit your face\
