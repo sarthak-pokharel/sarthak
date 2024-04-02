@@ -11,7 +11,6 @@ except its not a curse this time.
 add that to being on your own,\
 independent of any lethal addictive chemical \
 or any poisoned chains\
-from any infected soul\
 or any soul crushing expectations from yourself
 
 literally heaven!\
