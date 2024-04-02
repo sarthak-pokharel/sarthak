@@ -10,8 +10,9 @@ except its not a curse this time.
 
 add that to being on your own,\
 independent of any lethal addictive chemical \
-or any infected soul\
-or any pending expectations from yourself
+or any poisoned chains\
+from any infected soul\
+or any soul crushing expectations from yourself
 
 literally heaven!\
 and i wish you could experience it
