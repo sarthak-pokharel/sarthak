@@ -2,8 +2,7 @@ let tcont = {
     "content":{
         "imgs":[],
         "text": 
-`
-and when every last week feels like months ago.
+`and when every last week feels like months ago.
 that when you love it.
 living that is.
 and its like immortality. 
@@ -30,10 +29,10 @@ just feels right
 literally heaven!
 oh how i wish you could experience it
 `.trim(),
-        "title": "fireflies - owl city",
-        "link": "https://youtu.be/psuRGfAaju4"
+        "title": "🤫",
+        "link": ""
     },
-    "date": null,
-    "labels": ["songspam", "randombs"]
+    "date": 1712082485763,
+    "labels": ["heaven","blogsposting"]
 };
 module.exports = {tcont};
