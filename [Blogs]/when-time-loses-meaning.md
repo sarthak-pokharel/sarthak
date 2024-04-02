@@ -23,7 +23,7 @@ demanding to be seen, explored, admired, felt\
 all those abstract complex patterns you've been ignorant\
 to smallest, simplest, childish stuffs, fostering joy\
 and it all\
-just feels right\
+just feels right
 
 
 
