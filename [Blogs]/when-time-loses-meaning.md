@@ -22,6 +22,9 @@ to smallest, simplest, childish stuffs, fostering joy\
 every rays that hit your face\
 from that rising sun\
 feels like a warm blessing\
+and that gentle breeze\
+passing through the body\
+feels like a refreshing caress\
 and it all\
 just feels right
 
