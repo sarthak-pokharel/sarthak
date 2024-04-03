@@ -54,7 +54,7 @@ export default function makepost() {
         // Submit your form data here
         console.log({ title, content, labels, link });
 
-        await makeSubmitApiReq({ upCont: { title, content, labels }, password });
+        await makeSubmitApiReq({ upCont: { title, content, labels,link }, password });
         setTitle("");
         setLink("");
         setContent("");
